@@ -1,9 +1,10 @@
 import './App.css';
+import Footer from './Footer/Footer';
 
 
 import Main from './components/Main';
 
-import Footer from './components/Footer'
+
 import Navigation from './components/Navigation';
 function App (){
 return(

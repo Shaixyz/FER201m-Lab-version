@@ -1,0 +1,32 @@
+.footerMaster {
+    background-color: black;
+    padding: auto;
+    position: relative;
+    color: white;
+    
+  }
+  
+  .contactList {
+    margin-top: 3rem;
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(3, 1fr);
+    list-style-type: none;
+  }
+  
+  .footer {
+    width: 100%;
+    background-color: black;
+    color: white;
+  }
+  
+  .footer a {
+    color: white;
+    
+  }
+  
+  .footer a:hover {
+    color: #EE9B00;
+
+  }
+  
