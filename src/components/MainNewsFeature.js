@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 
 function MainNewsFeature(props) {
     const { post } = props;
-
+//For the picture and content of The Dark Knight Rises in News
     return (
         <Paper
             sx={{

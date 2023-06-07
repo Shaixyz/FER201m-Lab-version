@@ -1,12 +1,13 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import React from "react";
+
 const ContactForm = (props) => {
     const form = React.useRef();
     return (
-
         <Box sx={props.sx}>
             <Typography sx={{ textAlign: "center" }} variant="h4">
-              📞Contact Us
+                📞Contact Us
             </Typography>
             <Typography
                 sx={{
@@ -17,8 +18,9 @@ const ContactForm = (props) => {
                 }}
                 variant="h6"
             >
-               We value your feedback and are always eager to hear from our visitors. Whether you have a question, 
-               comment, or suggestion, we encourage you to get in touch with us. 
+                We value your feedback and are always eager to hear from our visitors.
+                Whether you have a question, comment, or suggestion, we encourage you
+                to get in touch with us.
             </Typography>
             <Paper elevation={3}>
                 <Box
@@ -43,6 +45,11 @@ const ContactForm = (props) => {
                         label="Full Name"
                         name="from_name"
                         required
+                        InputProps={{
+                            startAdornment: (
+                                <AccountCircle sx={{ color: "gray" }} fontSize="small" />
+                            ),
+                        }}
                     />
 
                     <TextField
@@ -57,6 +64,11 @@ const ContactForm = (props) => {
                         label="Email"
                         name="from_email"
                         required
+                        InputProps={{
+                            startAdornment: (
+                                <AccountCircle sx={{ color: "gray" }} fontSize="small" />
+                            ),
+                        }}
                     />
 
                     <TextField
@@ -70,6 +82,11 @@ const ContactForm = (props) => {
                         label="Your Phone"
                         name="from_phoneNo"
                         required
+                        InputProps={{
+                            startAdornment: (
+                                <AccountCircle sx={{ color: "gray" }} fontSize="small" />
+                            ),
+                        }}
                     />
 
                     <TextField
@@ -83,6 +100,11 @@ const ContactForm = (props) => {
                         label="Address"
                         name="Adress"
                         required
+                        InputProps={{
+                            startAdornment: (
+                                <AccountCircle sx={{ color: "gray" }} fontSize="small" />
+                            ),
+                        }}
                     />
 
                     <TextField

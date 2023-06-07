@@ -1,20 +1,22 @@
-import React from 'react'
-import listOfFilms from '../shared/ListOfFilms'
-import { useNavigate, useParams } from 'react-router-dom'
-import { Box, Button, Container, Typography } from '@mui/material'
-import { ArrowBack } from '@mui/icons-material'
+import React from 'react';
+import listOfFilms from '../shared/ListOfFilms';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Box, Button, Container, Typography, useTheme } from '@mui/material';
+import { ArrowBack } from '@mui/icons-material';
+
 const Detail = () => {
-    const navigate = useNavigate()
-    const { id } = useParams()
-    const film = listOfFilms.find((film) => film.id === Number(id))
-    console.log(film)
+    const navigate = useNavigate();
+    const { id } = useParams();
+    const film = listOfFilms.find((film) => film.id === Number(id));
+    const theme = useTheme();
+
     return (
         <Container maxWidth='false' sx={{ display: "flex", justifyContent: "center", marginTop: "2rem", flexWrap: 'wrap-reverse' }}>
             <Box sx={{ marginRight: { sm: "2rem", xs: 0 }, marginBottom: { sm: 0, xs: "1rem" }, width: { sm: "30%", xs: "100%" }, display: "flex", objectFit: "cover", justifyContent: "center" }}>
                 <img src={`../../${film.image}`} alt={film.title} />
             </Box>
             <Box sx={{ width: { sm: "60%", xs: "100%" } }}>
-                <Button startIcon={<ArrowBack />} variant="outlined" color="primary" onClick={() => { navigate('/') }} sx={{ color: 'white' }}>Back</Button>
+                <Button startIcon={<ArrowBack />} variant="outlined" color="primary" onClick={() => { navigate('/') }} sx={{ color: theme.palette.mode === "dark" ? "white" : "black" }}>Back</Button>
                 <Typography variant="h4" component="h1">
                     {film.title}
                 </Typography>
@@ -30,7 +32,7 @@ const Detail = () => {
                 <iframe className='video' src={film.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </Box>
         </Container>
-    )
+    );
 }
 
-export default Detail
+export default Detail;

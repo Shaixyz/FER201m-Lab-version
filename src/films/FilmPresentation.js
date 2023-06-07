@@ -7,7 +7,7 @@ import { AddCircle } from '@mui/icons-material';
 export default function FilmPresentation({ films }) {
     const theme = useTheme();
     const navigate = useNavigate();
-    
+
     return (
         <Grid bgcolor={theme.palette.mode === "dark" ? "#121212" : "white"} container spacing={3} sx={{ marginTop: "0", marginBottom: "5rem", padding: "2rem", justifyContent: 'center' }}>
             {films.map((film) => (
@@ -37,7 +37,16 @@ export default function FilmPresentation({ films }) {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button variant="outlined" startIcon={<AddCircle />} onClick={() => { navigate(`/detail/${film.id}`) }}sx={{ color: 'white' }}>Detail</Button>
+                            <Button
+                                variant="outlined"
+                                startIcon={<AddCircle />}
+                                onClick={() => { navigate(`/detail/${film.id}`) }}
+                                sx={{
+                                    color: theme.palette.mode === "dark" ? "white" : "black",
+                                }}
+                            >
+                                Detail
+                            </Button>
                         </CardActions>
                     </Card>
                 </Grid>

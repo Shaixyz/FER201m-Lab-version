@@ -6,10 +6,13 @@ import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import { useTheme } from '@mui/material/styles';
 
 function FeaturedPost(props) {
     const { post } = props;
-
+    const theme = useTheme();
+//For content of News
     return (
         <Grid item xs={12} md={6}>
             <CardActionArea component="a" href="#">
@@ -25,14 +28,19 @@ function FeaturedPost(props) {
                             {post.description}
                         </Typography>
                         <Typography variant="subtitle1" color="primary">
-                            Continue reading →
+                            <OutlinedInput
+                                value="Read More →"
+                                style={{ color: theme.palette.mode === 'dark' ? 'white' : 'black' }}
+                                multiline
+                                small
+                                inputProps={{ style: { textAlign: 'center' } }}
+                            />
                         </Typography>
                     </CardContent>
                     <CardMedia
                         component="img"
                         sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
                         image={post.image}
-                        alt={post.imageLabel}
                     />
                 </Card>
             </CardActionArea>

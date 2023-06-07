@@ -1,69 +1,101 @@
-/* eslint-disable import/no-webpack-loader-syntax */
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import MainNewsFeature from '../components/MainNewsFeature';
 import FeaturedPost from '../components/FeaturedPost';
 import Main from '../components/Main';
 import Sidebar from '../components/Sidebar';
-import post1 from '!!raw-loader!../components/markdown/blog-post.1.md';
-import post2 from '!!raw-loader!../components/markdown/blog-post.2.md';
-import post3 from '!!raw-loader!../components/markdown/blog-post.3.md';
-
+import IntroductionMarkdown from '../components/markdown/A.Introduction.md';
+import BodyMarkdown from '../components/markdown/B.Body.md';
+import ClosingMarkdown from '../components/markdown/C.Closing.md';
 
 const mainFeaturedPost = {
-  title: 'Title of a longer featured news',
+  title: 'The Dark Knight Rises',
   description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: 'https://source.unsplash.com/random?wallpapers',
-  imageText: 'main image description',
-  linkText: 'Continue reading…',
+    "Eight years after the Joker's reign of chaos, Batman is coerced out of exile with the assistance of the mysterious Selina Kyle in order to defend Gotham City from the vicious guerrilla terrorist Bane.",
+  image: 'https://wallpaperaccess.com/full/288727.jpg',
 };
 
 const featuredPosts = [
   {
-    title: 'Featured post',
-    date: 'Nov 12',
+    title: 'The Hobbit',
+    date: 'November 12',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random?wallpapers',
-    imageLabel: 'Image Text',
+      'The Hobbit is set in Middle-earth and follows home-loving Bilbo Baggins, the hobbit of the title, who joins the wizard Gandalf and thirteen dwarves that make up Thorin Oakenshield, on a quest to reclaim the dwarves home and treasure from the dragon Smaug.',
+    image: 'https://wallpaperaccess.com/full/288753.jpg',
   },
   {
-    title: 'Post title',
-    date: 'Nov 11',
+    title: 'Alice In Wonderland',
+    date: 'February 25',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random?wallpapers',
-    imageLabel: 'Image Text',
+      'Alice is Adventures in Wonderland by Lewis Carroll is a story about Alice who falls down a rabbit hole and lands into a fantasy world that is full of weird, wonderful people and animals. It is classic children book that is also popular with adults.',
+    image: 'https://wallpapers.com/images/hd/alice-in-wonderland-2010-film-photoshoot-rez0sccuv56tc9vy.jpg',
+  },
+  {
+    title: 'Avatar: The Way Of Water',
+    date: 'December 16',
+    description:
+      'Avatar is a science fiction retelling of the history of North and South America in the early colonial period. Avatar very pointedly made reference to the colonial period in the Americas, with all its conflict and bloodshed between the military aggressors from Europe and the indigenous peoples.',
+    image: 'https://m.media-amazon.com/images/I/71Lvqoov42L.jpg',
+  },
+  {
+    title: 'Aquaman',
+    date: 'November 26',
+    description:
+      'A half-Atlantean, half-human who is reluctant to be king of the undersea nation of Atlantis. He is a member of the Justice League. He possesses superhuman strength, durability, and has the ability to manipulate hydrokinesis, the tides, communicate with sea creatures and swim at supersonic speeds.',
+    image: 'https://m.media-amazon.com/images/I/91qc-4BkJbL._AC_UF894,1000_QL80_.jpg',
   },
 ];
 
-const posts = [post1, post2, post3];
-
 const sidebar = {
-  title: 'About',
+  title: 'What is ReactFlix?',
   description:
-    'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+    'ReactFlix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.',
   archives: [
-    { title: 'March 2020', url: '#' },
-    { title: 'February 2020', url: '#' },
-    { title: 'January 2020', url: '#' },
-    { title: 'November 1999', url: '#' },
-    { title: 'October 1999', url: '#' },
-    { title: 'September 1999', url: '#' },
-    { title: 'August 1999', url: '#' },
-    { title: 'July 1999', url: '#' },
-    { title: 'June 1999', url: '#' },
-    { title: 'May 1999', url: '#' },
-    { title: 'April 1999', url: '#' },
+    { title: 'Action Movies', url: '#' },
+    { title: 'Comedy Movies', url: '#' },
+    { title: 'Sci-Fi Movies', url: '#' },
+    { title: 'Thriller Movies', url: '#' },
+    { title: 'Drama Movies', url: '#' },
+    { title: 'Animated Movies', url: '#' },
+    { title: 'Documentaries', url: '#' },
+    { title: 'TV Shows', url: '#' },
+    { title: 'Anime Series', url: '#' },
+    { title: 'Classic Movies', url: '#' },
+    { title: 'New Releases', url: '#' },
+    { title: 'Recommended', url: '#' },
   ],
 };
 
-// TODO remove, this demo shouldn't need to reset the theme.
+// Function to fetch markdown content
+const fetchMarkdown = async (path) => {
+  const response = await fetch(path);
+  const content = await response.text();
+  return content;
+};
+
 export default function News() {
+  const [introduction, setIntroduction] = React.useState('');
+  const [body, setBody] = React.useState('');
+  const [closing, setClosing] = React.useState('');
+
+  React.useEffect(() => {
+    const fetchMarkdownContent = async () => {
+      const introductionContent = await fetchMarkdown(IntroductionMarkdown);
+      const bodyContent = await fetchMarkdown(BodyMarkdown);
+      const closingContent = await fetchMarkdown(ClosingMarkdown);
+
+      setIntroduction(introductionContent);
+      setBody(bodyContent);
+      setClosing(closingContent);
+    };
+
+    fetchMarkdownContent();
+  }, []);
+
   return (
-    <Container maxWidth="lg" sx={{ marginTop: "2rem" }}>
+    <Container maxWidth="lg" sx={{ marginTop: '2rem' }}>
       <main>
         <MainNewsFeature post={mainFeaturedPost} />
         <Grid container spacing={4}>
@@ -72,7 +104,7 @@ export default function News() {
           ))}
         </Grid>
         <Grid container spacing={5} sx={{ mt: 3 }}>
-          <Main title="From the firehose" posts={posts} />
+          <Main title={<Typography variant="h4" component="h2">Description</Typography>} posts={[introduction, body, closing]} />
           <Sidebar
             title={sidebar.title}
             description={sidebar.description}

@@ -1,21 +1,50 @@
-import React from 'react';
+import * as React from 'react';
 import ReactMarkdown from 'markdown-to-jsx';
-import { Typography, Link, Box } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
 
-const Markdown = ({ children }) => {
-  const options = {
+function MarkdownListItem(props) {
+    return <Box component="li" sx={{ mt: 1, typography: 'body1' }} {...props} />;
+}
+// For the content of Description in News
+const options = {
     overrides: {
-      Typography: {
-        component: Typography,
-        props: { variantMapping: { p: 'p', h1: 'h4', h2: 'h6', h3: 'subtitle1', h4: 'caption' } },
-      },
-      Link: { component: Link },
-      Box: { component: Box },
-      li: { component: Box, props: { component: 'li', sx: { mt: 1, typography: 'body1' } } },
+        h1: {
+            component: Typography,
+            props: {
+                gutterBottom: true,
+                variant: 'h4',
+                component: 'h1',
+            },
+        },
+        h2: {
+            component: Typography,
+            props: { gutterBottom: true, variant: 'h6', component: 'h2' },
+        },
+        h3: {
+            component: Typography,
+            props: { gutterBottom: true, variant: 'subtitle1' },
+        },
+        h4: {
+            component: Typography,
+            props: {
+                gutterBottom: true,
+                variant: 'caption',
+                paragraph: true,
+            },
+        },
+        p: {
+            component: Typography,
+            props: { paragraph: true },
+        },
+        a: { component: Link },
+        li: {
+            component: MarkdownListItem,
+        },
     },
-  };
-
-  return <ReactMarkdown options={options}>{children}</ReactMarkdown>;
 };
 
-export default Markdown;
+export default function Markdown(props) {
+    return <ReactMarkdown options={options} {...props} />;
+}
