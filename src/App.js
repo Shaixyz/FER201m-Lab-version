@@ -1,23 +1,44 @@
-import './App.css';
-import Footer from './Footer/Footer';
+import { Route, Routes } from 'react-router-dom';
+import Footer from './footer/Footer';
+import Navigation from './header/Navigation';
+import { ThemeProvider } from '@emotion/react';
+import React from 'react';
+import { createTheme } from '@mui/material';
+import ColorModeContext from './darkmode/ColorModeContext';
+import { routes } from './routes/routes';
 
+function App() {
+  const [mode, setMode] = React.useState('dark');
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    [],
+  );
 
-import Main from './components/Main';
-
-
-import Navigation from './components/Navigation';
-function App (){
-return(
-
-    <div className='App'>
-<Navigation/>
-<Main/>
-<Footer/>
-    </div>
-);
-
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode],
+  );
+  return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <Navigation />
+        <Routes>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path} Component={route.element} />
+          ))}
+        </Routes>
+        <Footer />
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+  );
 }
 export default App;
-
-
-

@@ -1,71 +1,67 @@
-import React from "react";
-import classes from "./Footer.css";
+import React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <div className='footerMaster'>
-      <div className='footer'>
-        <span>
-        <a href="#">Question?. Contact US</a>
-        </span>
-        <div>
-          <ul className='contactList'>
-            <li>
-              <a href="#">FAQ</a>
-            </li>
-            <li>
-              <a href="#">Help Center</a>
-            </li>
-            <li>
-              <a href="#">Account</a>
-            </li>
-            <li>
-              <a href="#">Media Center</a>
-            </li>
-            <li>
-              <a href="#">Investor Relations</a>
-            </li>
-            <li>
-              <a href="#">Jobs</a>
-            </li>
-            <li>
-              <a href="#">Redeem Gift Cards</a>
-            </li>
-            <li>
-              <a href="#">Buy Gift Cards</a>
-            </li>
-            <li>
-              <a href="#">Ways to Watch</a>
-            </li>
-            <li>
-              <a href="#">Terms of Use</a>
-            </li>
-            <li>
-              <a href="#">Privacy</a>
-            </li>
-            <li>
-              <a href="#">Cookie Preferences</a>
-            </li>
-            <li>
-              <a href="#">Corporate Information</a>
-            </li>
-            <li>
-              <a href="#">Contact Us</a>
-            </li>
-            <li>
-              <a href="#">Speed Test</a>
-            </li>
-            <li>
-              <a href="#">Legal Notices</a>
-            </li>
-            <li>
-              <a href="#">Only on Netflix</a>
-            </li>
-          </ul>
+    <Box>
+      <CssBaseline />
+      <Container maxWidth="sm">
+        <Typography variant="body1" align="center">
+          <a
+            href="#"
+            style={{ color: 'orange', textDecoration: 'none' }}
+            onMouseEnter={(e) => { e.target.style.color = 'white'; }}
+            onMouseLeave={(e) => { e.target.style.color = 'orange'; }}
+          >
+            Question?. Contact US
+          </a>
+        </Typography>
+        <div
+          className="contactList"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            textDecoration: 'underline orange',
+            gridGap: '1rem',
+            marginBottom: '0.75rem',
+            marginTop: '2.5rem',
+          }}
+        >
+          <LinkItem text="FAQ" />
+          <LinkItem text="Help Center" />
+          <LinkItem text="Account" />
+          <LinkItem text="Media Center" />
+          <LinkItem text="Investor Relations" />
+          <LinkItem text="Jobs" />
+          <LinkItem text="Redeem Gift Cards" />
+          <LinkItem text="Buy Gift Cards" />
+          <LinkItem text="Ways to Watch" />
+          <LinkItem text="Terms of Use" />
+          <LinkItem text="Privacy" />
+          <LinkItem text="Cookie Preferences" />
+          <LinkItem text="Corporate Information" />
+          <LinkItem text="Contact Us" />
+          <LinkItem text="Speed Test" />
+          <LinkItem text="Legal Notices" />
+          <LinkItem text="Only on Netflix" />
         </div>
-      </div>
-    </div>
+      </Container>
+    </Box>
   );
-};
+}
 
-export default Footer;
+const LinkItem = ({ text }) => (
+  <Typography variant="body1" align="center">
+    <a
+      href="#"
+      style={{ color: 'orange', textDecoration: 'none' }}
+      onMouseEnter={(e) => { e.target.style.color = 'white'; }}
+      onMouseLeave={(e) => { e.target.style.color = 'orange'; }}
+    >
+      {text}
+    </a>
+  </Typography>
+);
